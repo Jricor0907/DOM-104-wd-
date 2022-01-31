@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .imageCarousel {
+            height: 50%;
+            width: 50%;
+            margin: 20px auto;
+        }
+
+        .imageCarousel > img {
+            width: 100%;
+            opacity: 1;
+
+            transition: opacity 0.5s;
+        }
+
+        #prev-button, #next-button {
+            display: inline-block;
+            padding: 10px 12px;
+            width: auto;
+            outline: none;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        #prev-button:hover, #next-button:hover {
+            color: white;
+            background-color: black;
+        }
+
+        #prev-button {
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            margin-left: 5px;
+        }
+        #next-button {
+            position: absolute;
+            top: 25%;
+            right: 25%;
+        }
+    </style>
+</head>
+<body>
+    <div class="imageCarousel">
+        <img src="./images/avocado.jpeg" />
+        <button id="prev-button"><</button>
+        <button id="next-button">></button>
+    </div>
+
+    <script>
+        const images = [
+            "./images/avocado.jpeg",
+            "./images/pancake.jpeg",
+            "./images/sandwich.jpeg",
+            "./images/spaghetti.jpeg",
+        ]
+
+        let currentIndex = 0
+
+        //solution here
+        const img = document.querySelector('img')
+        const next = document.querySelector('#next-button')
+        const prev = document.querySelector('#prev-button')
+
+        const incrementIndex = function(){
+            currentIndex++
+            if(currentIndex > images.length - 1){
+                currentIndex = 0
+            }
+            return currentIndex
+        }
+
+        const decrementIndex = function(){
+            currentIndex--
+            // currentIndex = currentIndex - 1
+            if(currentIndex < 0){
+                currentIndex = images.length - 1
+            }
+            return currentIndex
+        }
+
+        next.addEventListener('click', function(){
+            img.setAttribute('src', images[incrementIndex()])
+        })
+        prev.addEventListener('click', function(){
+            img.setAttribute('src', images[decrementIndex()])
+        })
+        
+        //solution end here
+    </script>
+</body>
+</html>
